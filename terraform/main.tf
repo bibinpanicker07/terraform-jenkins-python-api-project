@@ -59,6 +59,4 @@ module "aws_ceritification_manager" {
   domain_name    = var.domain_name
   hosted_zone_id = module.hosted_zone.hosted_zone_id
 }
-output "validation_record" {
-  value = module.aws_ceritification_manager.acm_arn
-}
+
