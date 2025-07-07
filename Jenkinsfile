@@ -11,7 +11,7 @@ pipeline {
         stage('Clone Repository') {
             steps {
                 deleteDir()
-                git branch: 'main',credentialsId: 'github-token', url: 'https://github.com/bibinpanicker07/python-mysql-db-proj.git'
+                git branch: 'main',credentialsId: 'github-token', url: 'https://github.com/bibinpanicker07/terraform-jenkins-python-api-project.git '
             }
         }
 
