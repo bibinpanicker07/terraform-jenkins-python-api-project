@@ -1,4 +1,4 @@
-var rds_secret_arm {}
+variable rds_secret_arm {}
 
 resource "aws_iam_role" "ec2_role" {
   name = "ec2-secretsmanager-role"
@@ -45,6 +45,6 @@ resource "aws_iam_instance_profile" "ec2_instance_profile" {
 }
 
 output instance_profile_name {
-    name = aws_iam_instance_profile.ec2_instance_profile.name
+    value = aws_iam_instance_profile.ec2_instance_profile.name
 }
 

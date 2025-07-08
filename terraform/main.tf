@@ -5,7 +5,7 @@ terraform {
   backend "s3" {
     bucket = "bibinpanicker.shop"
     key    = "python-api-project/terraform.tfstate"
-    region = "es-east-1"
+    region = "us-east-1"
   }
 }
 module "networking" {
@@ -52,8 +52,8 @@ module "rds_db_instance" {
   subnet_groups        = tolist(module.networking.public_subnet_ids)
   rds_mysql_sg_id      = module.security_group.rds_sg
   mysql_db_identifier  = "mydb"
-  username             = module.secret-manager.username
-  password             = module.secret-manager.username
+  mysql_username       = module.secret-manager.username
+  mysql_password       = module.secret-manager.password
   mysql_dbname         = "devprojdb"
 }
 module "hosted_zone" {
