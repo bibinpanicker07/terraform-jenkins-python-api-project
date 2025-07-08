@@ -29,6 +29,7 @@ module "launch_template" {
     instance_type       = "t2.micro"
     sg                  = module.security_group.sg
     key_name            = var.key_name
+    instance_profile_name = module.iam.instance_profile_name
 }
 module "lb" {
     source              = "./modules/lb-target-grp"
@@ -51,8 +52,8 @@ module "rds_db_instance" {
   subnet_groups        = tolist(module.networking.public_subnet_ids)
   rds_mysql_sg_id      = module.security_group.rds_sg
   mysql_db_identifier  = "mydb"
-  mysql_username       = "dbuser"
-  mysql_password       = "dbpassword"
+  username             = module.secret-manager.username
+  password             = module.secret-manager.username
   mysql_dbname         = "devprojdb"
 }
 module "hosted_zone" {
@@ -66,4 +67,10 @@ module "aws_ceritification_manager" {
   domain_name    = var.domain_name
   hosted_zone_id = module.hosted_zone.hosted_zone_id
 }
-
+module "secret-manager" {
+  source         = "./modules/secret-manager"
+}
+module "iam" {
+  source         = "./modules/iam"
+  rds_secret_arm = module.secret-manager.rds_secret_arm
+}
