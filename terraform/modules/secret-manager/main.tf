@@ -22,3 +22,6 @@ output username {
 output username {
   value = jsondecode(aws_secretsmanager_secret_version.rds_secret_version.secret_string)["password"]
 }
+output rds_secret_arm{
+  value = aws_secretsmanager_secret.rds_secret.arn
+}
