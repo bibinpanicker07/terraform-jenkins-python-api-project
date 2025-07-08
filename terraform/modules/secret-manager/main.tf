@@ -16,3 +16,9 @@ resource "aws_secretsmanager_secret_version" "rds_secret_version" {
   })
 }
 
+output username {
+  value = jsondecode(aws_secretsmanager_secret_version.rds_secret_version.secret_string)["username"]
+}
+output username {
+  value = jsondecode(aws_secretsmanager_secret_version.rds_secret_version.secret_string)["password"]
+}
