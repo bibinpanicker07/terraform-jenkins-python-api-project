@@ -1,3 +1,5 @@
+var rds_secret_arm {}
+
 resource "aws_iam_role" "ec2_role" {
   name = "ec2-secretsmanager-role"
 
@@ -25,7 +27,7 @@ resource "aws_iam_policy" "secretsmanager_access_policy" {
         Action = [
           "secretsmanager:GetSecretValue"
         ],
-        Resource = aws_secretsmanager_secret.rds_secret.arn
+        Resource = var.rds_secret_arm
       }
     ]
   })
