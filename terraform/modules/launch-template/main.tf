@@ -3,7 +3,7 @@ variable instance_type {}
 variable ami_id {}
 variable sg {}
 variable key_name {}
-
+variable instance_profile_name {}
 
 resource "aws_launch_template" "launch_temp" {
   name_prefix     = "ec2_launch_template_"
@@ -17,6 +17,9 @@ resource "aws_launch_template" "launch_temp" {
   key_name        = var.key_name
   lifecycle {
     create_before_destroy = true
+  }
+  iam_instance_profile {
+    name = var.instance_profile_name
   }
 }
 
